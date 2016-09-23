@@ -1,8 +1,6 @@
 {
-  "name": "express-mongoose-es6-rest-api",
+  "name": "Bookshelf",
   "version": "1.0.0",
-  "description": "A Boilerplate application for building REST APIs using express, mongoose in ES6 with code coverage",
-  "author": "Kunal Kapadia <kunalkapadia12@gmail.com>",
   "main": "index.js",
   "private": false,
   "engines": {
@@ -19,20 +17,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:KunalKapadia/express-mongoose-es6-rest-api.git"
+    "url": "git@github.com:paulashbourne/bookshelf.git"
   },
   "keywords": [
-    "express",
-    "node",
-    "node.js",
-    "mongodb",
-    "mongoose",
-    "es6",
-    "mocha",
-    "istanbul",
-    "REST",
-    "API",
-    "boilerplate"
   ],
   "dependencies": {
     "bluebird": "^3.1.4",
@@ -87,7 +74,6 @@
     "supertest-as-promised": "3.1.0",
     "validate-commit-msg": "^2.6.1"
   },
-  "license": "MIT",
   "config": {
     "ghooks": {
       "pre-commit": "npm run lint && npm test",
