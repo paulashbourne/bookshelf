@@ -71,13 +71,11 @@
     "mocha": "2.5.3",
     "run-sequence": "^1.1.5",
     "supertest": "^1.1.0",
-    "supertest-as-promised": "3.1.0",
-    "validate-commit-msg": "^2.6.1"
+    "supertest-as-promised": "3.1.0"
   },
   "config": {
     "ghooks": {
-      "pre-commit": "npm run lint && npm test",
-      "commit-msg": "validate-commit-msg"
+      "pre-commit": "npm run lint && npm test"
     },
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
