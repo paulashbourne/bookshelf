@@ -22,8 +22,10 @@ function get(req, res) {
 
 /**
  * Create new book
- * @property {string} req.body.bookname - The bookname of book.
- * @property {string} req.body.mobileNumber - The mobileNumber of book.
+ * @property {string} req.body.title - The title of book.
+ * @property {string} req.body.isbn_10 - The 10-digit ISBN of book.
+ * @property {string} req.body.isbn_13 - The 13-digit ISBN of book.
+ * @property {string} req.body.ownerId - The id of user who owns of book.
  * @returns {Book}
  */
 function create(req, res, next) {
@@ -41,8 +43,10 @@ function create(req, res, next) {
 
 /**
  * Update existing book
- * @property {string} req.body.bookname - The bookname of book.
- * @property {string} req.body.mobileNumber - The mobileNumber of book.
+ * @property {string} req.body.title - The title of book.
+ * @property {string} req.body.isbn_10 - The 10-digit ISBN of book.
+ * @property {string} req.body.isbn_13 - The 13-digit ISBN of book.
+ * @property {string} req.body.ownerId - The id of user who owns of book.
  * @returns {Book}
  */
 function update(req, res, next) {
