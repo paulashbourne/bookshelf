@@ -3,14 +3,19 @@ import httpStatus from 'http-status';
 import chai, { expect } from 'chai';
 import app from '../../index';
 
+import User from '../models/user';
+
 chai.config.includeStack = true;
 
 describe('## Book APIs', () => {
+  var user = new User({ username: 'foo@bar.com' });
+  user.save();
+
   let book = {
     title: 'The Little Prince',
     isbn_10: 8180320596,
     isbn_13: 9788180320590,
-    ownerId: #
+    ownerId: user.id
   };
 
   describe('# POST /api/books', () => {

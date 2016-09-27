@@ -26,15 +26,17 @@ export default {
       title: Joi.string().required(),
       isbn_10: Joi.number().integer().required(),
       isbn_13: Joi.number().integer().required(),
-      ownerId: Joi.string().required()
+      ownerId: Joi.required()
     }
   },
 
   // UPDATE /api/books/:userId
   updateBook: {
     body: {
-      username: Joi.string().required(),
-      mobileNumber: Joi.string().regex(/^[1-9][0-9]{9}$/).required()
+      title: Joi.string().required(),
+      isbn_10: Joi.number().integer().required(),
+      isbn_13: Joi.number().integer().required(),
+      ownerId: Joi.required()
     },
     params: {
       bookId: Joi.string().hex().required()

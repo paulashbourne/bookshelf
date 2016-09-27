@@ -28,8 +28,10 @@ function get(req, res) {
  */
 function create(req, res, next) {
   const book = new Book({
-    bookname: req.body.bookname,
-    mobileNumber: req.body.mobileNumber
+    title: req.body.title,
+    isbn_10: req.body.isbn_10,
+    isbn_13: req.body.isbn_13,
+    ownerId: req.body.ownerId
   });
 
   book.save()
@@ -45,8 +47,10 @@ function create(req, res, next) {
  */
 function update(req, res, next) {
   const book = req.book;
-  book.bookname = req.body.bookname;
-  book.mobileNumber = req.body.mobileNumber;
+  book.title = req.body.title;
+  book.isbn_10 = req.body.isbn_10;
+  book.isbn_13 = req.body.isbn_13;
+  book.ownerId = req.body.ownerId;
 
   book.save()
     .then(savedBook => res.json(savedBook))
