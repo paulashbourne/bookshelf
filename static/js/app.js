@@ -42,9 +42,41 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var actions = __webpack_require__(1);
+	console.log('Wassap');
+	console.log(actions.views.home());
+
+
+/***/ },
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var views_ts_1 = __webpack_require__(2);
+	exports.views = views_ts_1.views;
+
+
+/***/ },
+/* 2 */
 /***/ function(module, exports) {
 
-	console.log('Wassap');
+	"use strict";
+	var views;
+	(function (views) {
+	    var HOME = 'HOME';
+	    var BOOK = 'BOOK';
+	    function home() {
+	        return { type: HOME };
+	    }
+	    views.home = home;
+	    function book() {
+	        return { type: BOOK };
+	    }
+	    views.book = book;
+	})(views = exports.views || (exports.views = {}));
 
 
 /***/ }
