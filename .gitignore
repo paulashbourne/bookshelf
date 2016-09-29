@@ -40,6 +40,9 @@ node_modules
 
 # Build files
 build/
+static/js/
 
 # Dumb file
 .DS_Store
+
+
