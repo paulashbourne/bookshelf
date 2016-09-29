@@ -16,7 +16,7 @@ module.exports = {
       { test: /\.tsx?$/, loader: 'ts-loader' },
       {
         test: /\.css$/,
-        loaders: 'style!css'
+        loader: 'style!css'
       }
     ],
     preLoaders: [
