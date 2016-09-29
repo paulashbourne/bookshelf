@@ -9,6 +9,7 @@ import httpStatus from 'http-status';
 import expressWinston from 'express-winston';
 import expressValidation from 'express-validation';
 import helmet from 'helmet';
+import engines from 'consolidate';
 import winstonInstance from './winston';
 import routes from '../server/routes';
 import config from './env';
@@ -34,6 +35,9 @@ app.use(helmet());
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors());
 
+// Set the static files
+app.use(express.static('./static/'));
+
 // enable detailed API logging in dev env
 if (config.env === 'development') {
   expressWinston.requestWhitelist.push('body');
@@ -48,6 +52,11 @@ if (config.env === 'development') {
 
 // mount all routes on /api path
 app.use('/api', routes);
+
+// setup index.html route
+app.get('/', function(req, res) {
+  res.sendfile('./static/index.html');
+});
 
 // if error is not an instanceOf APIError, convert it.
 app.use((err, req, res, next) => {

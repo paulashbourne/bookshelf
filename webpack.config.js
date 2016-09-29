@@ -1,7 +1,7 @@
 module.exports = {
   entry: './web/app.ts',
   output: {
-    filename: 'build/bundle.js'
+    filename: 'static/js/app.js'
   },
 
   // Turn on sourcemaps
@@ -16,4 +16,4 @@ module.exports = {
       { test: /\.ts$/, loader: 'ts-loader' }
     ]
   }
-}
+};
