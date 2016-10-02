@@ -19,7 +19,7 @@ const BookSchema = new mongoose.Schema({
   heldById: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: false,
+    required: true,
   },
   createdAt: {
     type: Date,

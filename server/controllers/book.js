@@ -22,18 +22,16 @@ function get(req, res) {
 
 /**
  * Create new book
- * @property {string} req.body.title - The title of book.
- * @property {string} req.body.isbn_10 - The 10-digit ISBN of book.
- * @property {string} req.body.isbn_13 - The 13-digit ISBN of book.
+ * @property {string} req.body.volumeId - The Google volumeId of the book.
  * @property {string} req.body.ownerId - The id of user who owns of book.
+ * @property {string} req.body.heldById - The id of user who currently holds the book.
  * @returns {Book}
  */
 function create(req, res, next) {
   const book = new Book({
-    title: req.body.title,
-    isbn_10: req.body.isbn_10,
-    isbn_13: req.body.isbn_13,
-    ownerId: req.body.ownerId
+    volumeId: req.body.volumeId,
+    ownerId: req.body.ownerId,
+    heldById: req.body.heldById,
   });
 
   book.save()
@@ -43,18 +41,16 @@ function create(req, res, next) {
 
 /**
  * Update existing book
- * @property {string} req.body.title - The title of book.
- * @property {string} req.body.isbn_10 - The 10-digit ISBN of book.
- * @property {string} req.body.isbn_13 - The 13-digit ISBN of book.
+ * @property {string} req.body.volumeId - The volumeId of book.
  * @property {string} req.body.ownerId - The id of user who owns of book.
+ * @property {string} req.body.heldById - The id of user who currently holds the book.
  * @returns {Book}
  */
 function update(req, res, next) {
   const book = req.book;
-  book.title = req.body.title;
-  book.isbn_10 = req.body.isbn_10;
-  book.isbn_13 = req.body.isbn_13;
+  book.volumeId = req.body.volumeId;
   book.ownerId = req.body.ownerId;
+  book.heldById = req.body.heldById;
 
   book.save()
     .then(savedBook => res.json(savedBook))

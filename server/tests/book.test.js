@@ -12,10 +12,9 @@ describe('## Book APIs', () => {
   user.save();
 
   let book = {
-    title: 'The Little Prince',
-    isbn_10: 8180320596,
-    isbn_13: 9788180320590,
-    ownerId: user.id
+    volumeId: 'random_id_123',
+    ownerId: user.id,
+    heldById: user.id
   };
 
   describe('# POST /api/books', () => {
@@ -25,10 +24,9 @@ describe('## Book APIs', () => {
         .send(book)
         .expect(httpStatus.OK)
         .then((res) => {
-          expect(res.body.title).to.equal(book.title);
-          expect(res.body.isbn_10).to.equal(book.isbn_10);
-          expect(res.body.isbn_13).to.equal(book.isbn_13);
+          expect(res.body.volumeId).to.equal(book.volumeId);
           expect(res.body.ownerId).to.equal(book.ownerId);
+          expect(res.body.heldById).to.equal(book.heldById);
           book = res.body;
           done();
         })
@@ -42,10 +40,9 @@ describe('## Book APIs', () => {
         .get(`/api/books/${book._id}`)
         .expect(httpStatus.OK)
         .then((res) => {
-          expect(res.body.title).to.equal(book.title);
-          expect(res.body.isbn_10).to.equal(book.isbn_10);
-          expect(res.body.isbn_13).to.equal(book.isbn_13);
+          expect(res.body.volumeId).to.equal(book.volumeId);
           expect(res.body.ownerId).to.equal(book.ownerId);
+          expect(res.body.heldById).to.equal(book.heldById);
           done();
         })
         .catch(done);
@@ -65,16 +62,15 @@ describe('## Book APIs', () => {
 
   describe('# PUT /api/books/:bookId', () => {
     it('should update book details', (done) => {
-      book.title = 'New Title';
+      book.volumeId = 'random_id_987';
       request(app)
         .put(`/api/books/${book._id}`)
         .send(book)
         .expect(httpStatus.OK)
         .then((res) => {
-          expect(res.body.title).to.equal('New Title');
-          expect(res.body.isbn_10).to.equal(book.isbn_10);
-          expect(res.body.isbn_13).to.equal(book.isbn_13);
+          expect(res.body.volumeId).to.equal('random_id_987');
           expect(res.body.ownerId).to.equal(book.ownerId);
+          expect(res.body.heldById).to.equal(book.heldById);
           done();
         })
         .catch(done);
@@ -100,10 +96,9 @@ describe('## Book APIs', () => {
         .delete(`/api/books/${book._id}`)
         .expect(httpStatus.OK)
         .then((res) => {
-          expect(res.body.title).to.equal(book.title);
-          expect(res.body.isbn_10).to.equal(book.isbn_10);
-          expect(res.body.isbn_13).to.equal(book.isbn_13);
+          expect(res.body.volumeId).to.equal(book.volumeId);
           expect(res.body.ownerId).to.equal(book.ownerId);
+          expect(res.body.heldById).to.equal(book.heldById);
           done();
         })
         .catch(done);

@@ -23,20 +23,18 @@ export default {
   // POST /api/books
   createBook: {
     body: {
-      title: Joi.string().required(),
-      isbn_10: Joi.number().integer().required(),
-      isbn_13: Joi.number().integer().required(),
-      ownerId: Joi.required()
+      volumeId: Joi.string().required(),
+      ownerId: Joi.required(),
+      heldById: Joi.required()
     }
   },
 
   // UPDATE /api/books/:userId
   updateBook: {
     body: {
-      title: Joi.string().required(),
-      isbn_10: Joi.number().integer().required(),
-      isbn_13: Joi.number().integer().required(),
-      ownerId: Joi.required()
+      volumeId: Joi.string().required(),
+      ownerId: Joi.required(),
+      heldById: Joi.required()
     },
     params: {
       bookId: Joi.string().hex().required()
