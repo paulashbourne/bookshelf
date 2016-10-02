@@ -1,4 +1,4 @@
-import Promise from 'bluebird'
+import Promise from 'bluebird';
 import mongoose from 'mongoose';
 import httpStatus from 'http-status';
 import APIError from '../helpers/APIError';
@@ -9,19 +9,19 @@ import APIError from '../helpers/APIError';
 const BookSchema = new mongoose.Schema({
   volume_id: {
     type: String,
-    required: true   
+    required: true 
   },
   user_id: {
-    type: ObjectId,
+    type: mongoose.schema.ObjectId,
     required: true
   },
   held_by_id: {
-    type: ObjectId,
-    required: false 
+    type: mongoose.schema.ObjectId,
+    required: false
   },
   created_at: {
     type: Date,
-    default: Date.now 
+    default: Date.now
   }
 });
 
@@ -34,17 +34,17 @@ BookSchema.statics = {
       .exec()
       .then((book) => {
         if (book) {
-          return book; 
+          return book;
         }
 
         const err = new APIError('No such book exists!', httpStatus.NOT_FOUND);
         return Promise.reject(err);
-      })
+      });
   },
 
   list({ skip = 0, limit = 50 } = {}) {
     return this.find()
-      .sort({ createdAt: -1 }) 
+      .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit)
       .exec();
