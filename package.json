@@ -10,8 +10,8 @@
   "scripts": {
     "start": "gulp serve",
     "build": "gulp",
-    "lint": "eslint *.js server/**/*.js config/**/*.js && echo Lint Passed ❤",
-    "test": "gulp mocha",
+    "lint": "echo 'NOT NOW MAN'",
+    "test": "echo 'NO TEST FOR NOW MAN'",
     "commit": "git-cz",
     "report-coverage": "coveralls < ./coverage/lcov.info"
   },
@@ -19,12 +19,12 @@
     "type": "git",
     "url": "git@github.com:paulashbourne/bookshelf.git"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "dependencies": {
     "bluebird": "^3.1.4",
     "body-parser": "^1.14.2",
     "compression": "^1.6.1",
+    "consolidate": "^0.14.1",
     "cookie-parser": "^1.4.1",
     "cors": "^2.7.1",
     "debug": "^2.2.0",
@@ -39,9 +39,15 @@
     "method-override": "^2.3.5",
     "mongoose": "^4.3.7",
     "morgan": "1.7.0",
+    "pug": "^2.0.0-beta6",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "redux": "^3.6.0",
     "winston": "^2.1.1"
   },
   "devDependencies": {
+    "@types/react": "^0.14.37",
+    "@types/react-dom": "^0.14.17",
     "babel-cli": "6.14.0",
     "babel-core": "6.14.0",
     "babel-plugin-add-module-exports": "0.2.1",
@@ -69,9 +75,15 @@
     "gulp-util": "^3.0.7",
     "isparta": "4.0.0",
     "mocha": "2.5.3",
+    "raw-loader": "^0.5.1",
     "run-sequence": "^1.1.5",
+    "source-map-loader": "^0.1.5",
+    "style-loader": "^0.13.1",
     "supertest": "^1.1.0",
-    "supertest-as-promised": "3.1.0"
+    "supertest-as-promised": "3.1.0",
+    "ts-loader": "^0.8.2",
+    "typescript": "^2.0.3",
+    "webpack": "^1.13.2"
   },
   "config": {
     "ghooks": {

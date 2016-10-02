@@ -1,0 +1,30 @@
+body {
+  font-family: 'Lato', 'Helvetica', sans-serif;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 16px;
+  padding: 16px;
+
+  color: #F2994A;
+
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+}
+
+.nav__home:visited,
+.nav__home:link,
+.nav__home:active {
+  color: #F2994A;
+  text-decoration: none;
+}
+
+.container {
+  margin: 96px auto;
+  width: 450px;
+}
