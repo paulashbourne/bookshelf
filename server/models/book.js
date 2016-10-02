@@ -4,22 +4,24 @@ import httpStatus from 'http-status';
 import APIError from '../helpers/APIError';
 
 /**
- * Book schema
+ * Book Schema
  */
 const BookSchema = new mongoose.Schema({
-  volume_id: {
+  volumeId: {
     type: String,
-    required: true 
-  },
-  user_id: {
-    type: mongoose.schema.ObjectId,
     required: true
   },
-  held_by_id: {
-    type: mongoose.schema.ObjectId,
-    required: false
+  ownerId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
   },
-  created_at: {
+  heldById: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  createdAt: {
     type: Date,
     default: Date.now
   }
@@ -39,7 +41,7 @@ BookSchema.statics = {
 
         const err = new APIError('No such book exists!', httpStatus.NOT_FOUND);
         return Promise.reject(err);
-      });
+      })
   },
 
   list({ skip = 0, limit = 50 } = {}) {
