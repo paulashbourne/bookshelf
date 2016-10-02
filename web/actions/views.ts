@@ -1,12 +1,15 @@
 export namespace views {
-  let HOME: string = 'HOME';
-  let BOOK: string = 'BOOK';
+  let HOME: string = 'VIEW_HOME';
+  let BOOK: string = 'VIEW_BOOK';
 
   export function home() {
     return { type: HOME };
   }
 
-  export function book() {
-    return { type: BOOK };
+  export function book(bookId: string) {
+    return {
+      type: BOOK,
+      bookId: bookId
+    };
   }
 }

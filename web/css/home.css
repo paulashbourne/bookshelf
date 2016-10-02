@@ -1,16 +1,26 @@
 .home__book {
   display: flex;
   margin: 32px 0;
-  padding: 32px;
+  padding: 16px;
   width: 100%;
 
   border: 1px solid rgba(0,0,0,.1);
+  cursor: pointer;
+}
+
+.home__book:hover {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
 .home__book__preview {
   height: 120px;
-  width: 90px;
+  width: 100px;
+
   background-color: rgba(0,0,0,.3);
+  background-image: url('/img/harry-potter.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .home__book__info {
@@ -18,7 +28,7 @@
   justify-content: space-between;
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: 8px 32px;
 }
 
 .home__book__info--top {
@@ -35,8 +45,8 @@
 
 
 .home__book__title {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .home__book__author {
@@ -44,5 +54,5 @@
 
   color: #666;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 300;
 }

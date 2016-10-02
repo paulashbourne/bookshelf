@@ -1,13 +1,21 @@
 import * as React from 'react';
 
+import store from '../store';
+import * as actions from '../actions/views';
+
 import '../css/home.css';
 
 interface HomeProps {}
 
 class HomeView extends React.Component<HomeProps, {}> {
+
+  private onBookClick = () => {
+    store.dispatch(actions.views.book('Book!'));
+  }
+
   renderBook(book) {
     return (
-      <div className="home__book">
+      <div className="home__book" onClick={this.onBookClick}>
         <div className="home__book__preview">
         </div>
         <div className="home__book__info">

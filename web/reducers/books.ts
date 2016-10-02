@@ -1,14 +1,12 @@
 
-enum View {
-  HOME,
-  BOOK
-}
 
-export default function views(state: View, action) {
+export default function books(state: string, action) {
   switch (action.type) {
-    case 'HOME':
-      return View.HOME;
-    case 'BOOK':
-      return View.BOOK;
+    case 'VIEW_HOME':
+      return null;
+    case 'VIEW_BOOK':
+      return action.payload.bookId;
+    default:
+      return null;
   }
 }
