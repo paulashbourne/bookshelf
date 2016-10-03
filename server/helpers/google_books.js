@@ -1,4 +1,5 @@
 import gbooks from 'google-books-search';
+import async from 'async';
 
 /* Takes a volume from Google Books and transforms it how we like it */
 var transformVolume = function(volume) {
@@ -33,4 +34,20 @@ export default class GoogleBooks {
         callback(null, transformVolume(result));
     });
   }
+
+  static annotateBook(book, callback) {
+    GoogleBooks.lookup(book.volumeId, function(error, result) {
+      if (error)
+        callback(error);
+      else
+        callback(null, Object.assign({}, book, result));
+    });
+  }
+
+  static annotateBooks(books = [], callback) {
+    // Google Books API doesn't let you get multiple books by ID in
+    // a single query, so we have to annotate all books asynchronously
+    async.each(books, GoogleBooks.annotateBook, callback);
+  }
+
 }
