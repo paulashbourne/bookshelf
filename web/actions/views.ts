@@ -1,6 +1,6 @@
 export namespace views {
-  let HOME: string = 'VIEW_HOME';
-  let BOOK: string = 'VIEW_BOOK';
+  export let HOME: string = 'VIEW_HOME';
+  export let BOOK: string = 'VIEW_BOOK';
 
   export function home() {
     return { type: HOME };
@@ -9,7 +9,9 @@ export namespace views {
   export function book(bookId: string) {
     return {
       type: BOOK,
-      bookId: bookId
+      payload: {
+        bookId: bookId
+      }
     };
   }
 }

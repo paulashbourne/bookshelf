@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import store from '../store';
-import * as actions from '../actions/views';
+import * as actions from '../actions/index';
 
 import '../css/book.css';
 

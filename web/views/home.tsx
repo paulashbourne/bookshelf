@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import store from '../store';
-import * as actions from '../actions/views';
+import * as actions from '../actions/index';
 
 import '../css/home.css';
 
@@ -13,9 +13,9 @@ class HomeView extends React.Component<HomeProps, {}> {
     store.dispatch(actions.views.book('Book!'));
   }
 
-  renderBook(book) {
+  renderBook(book, key) {
     return (
-      <div className="home__book" onClick={this.onBookClick}>
+      <div key={`book-${key}`} className="home__book" onClick={this.onBookClick}>
         <div className="home__book__preview">
         </div>
         <div className="home__book__info">
@@ -38,7 +38,7 @@ class HomeView extends React.Component<HomeProps, {}> {
   render() {
     let books = [];
     for (let i = 0; i < 10; i++) {
-      books.push(this.renderBook(null));
+      books.push(this.renderBook(null, i));
     }
 
     return (

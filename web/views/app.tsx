@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import store from '../store';
+
 import HomeView from './home.tsx';
 
 import '../css/base.css';
@@ -19,6 +21,11 @@ class AppView extends React.Component<AppProps, {}> {
   }
 
   render() {
+    let view = null;
+    if (store.getState()) {
+      console.log(store.getState());
+    }
+
     // TODO: Add a bunch of things here such as a navigation tab or whaatever
     return (
       <div>

@@ -1,12 +1,10 @@
+import * as actions from '../actions/index';
 
-
-export default function books(state: string, action) {
+export default function books(state, action) {
   switch (action.type) {
-    case 'VIEW_HOME':
-      return null;
-    case 'VIEW_BOOK':
-      return action.payload.bookId;
+    case actions.books.BOOK_SET:
+      return action.payload.books;
     default:
-      return null;
+      return [];
   }
 }

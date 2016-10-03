@@ -4,7 +4,6 @@ enum View {
 }
 
 export default function views(state: View, action) {
-  console.log(action);
   switch (action.type) {
     case 'VIEW_HOME':
       return View.HOME;
