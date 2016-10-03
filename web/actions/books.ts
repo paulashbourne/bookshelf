@@ -1,5 +1,6 @@
 export namespace books {
   export let BOOK_SET: string = 'BOOK_SET';
+  export let BOOK_LOAD: string = 'BOOK_LOAD';
 
   export function setBooks(books) {
     return {
@@ -7,6 +8,12 @@ export namespace books {
       payload: {
         books
       }
+    };
+  }
+
+  export function load() {
+    return {
+      type: BOOK_LOAD,
     };
   }
 }

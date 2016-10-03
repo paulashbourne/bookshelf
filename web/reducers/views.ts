@@ -1,13 +1,15 @@
-enum View {
+import * as actions from '../actions/index';
+
+export enum View {
   HOME,
   BOOK
 }
 
 export default function views(state: View, action) {
   switch (action.type) {
-    case 'VIEW_HOME':
+    case actions.views.HOME:
       return View.HOME;
-    case 'VIEW_BOOK':
+    case actions.views.BOOK:
       return View.BOOK;
     default:
       return View.HOME;

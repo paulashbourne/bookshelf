@@ -5,7 +5,9 @@ import * as actions from '../actions/index';
 
 import '../css/home.css';
 
-interface HomeProps {}
+interface HomeProps {
+  books: any[]
+}
 
 class HomeView extends React.Component<HomeProps, {}> {
 
@@ -14,17 +16,20 @@ class HomeView extends React.Component<HomeProps, {}> {
   }
 
   renderBook(book, key) {
+    let style = {
+      backgroundImage: `url('${book.thumbnail}')`
+    }
     return (
       <div key={`book-${key}`} className="home__book" onClick={this.onBookClick}>
-        <div className="home__book__preview">
+        <div className="home__book__preview" style={style}>
         </div>
         <div className="home__book__info">
           <div className="home__book__info--top">
             <span className="home__book__title">
-              Harry Potter: The Philosophers Stone
+              {book.title}
             </span>
             <span className="home__book__author">
-            J.K. Rowling
+              {book.authors[0]}
             </span>
           </div>
           <div className="home__book__info--bottom">
@@ -36,14 +41,16 @@ class HomeView extends React.Component<HomeProps, {}> {
   }
 
   render() {
-    let books = [];
-    for (let i = 0; i < 10; i++) {
-      books.push(this.renderBook(null, i));
+    let bookElems = [];
+    let books = this.props.books || [];
+    for (let i = 0; i < books.length; i++) {
+      let b = books[i];
+      bookElems.push(this.renderBook(b, i));
     }
 
     return (
       <div>
-        {books}
+        {bookElems}
       </div>
     );
   }

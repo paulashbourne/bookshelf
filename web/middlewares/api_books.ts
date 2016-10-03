@@ -5,11 +5,13 @@ import * as actions from '../actions/index';
 
 let hasLoaded = false;
 
+const URL = '/api/search?q=Rowling&field=author&limit=10';
+
 export default function getBooks() {
   return (next) => (action) => {
     if (!hasLoaded) {
       let p = new Promise(function(resolve, reject) {
-        $.get('/api/search?q=Gayle%20Laakmann%20McDowell&field=author&limit=1', function(data) {
+        $.get(URL, function(data) {
           resolve(data);
           hasLoaded = true;
         }).fail(function() {
