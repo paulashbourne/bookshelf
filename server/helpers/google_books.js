@@ -13,4 +13,8 @@ export default class GoogleBooks {
     };
     gbooks.search(query, options, callback);
   }
+
+  static lookup(volumeId, callback) {
+    gbooks.lookup(volumeId, callback);
+  }
 }

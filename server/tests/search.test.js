@@ -30,4 +30,19 @@ describe('## Book Search APIs', () => {
         .catch(done);
     });
   });
+
+  describe('# GET /api/search/:volumeId', () => {
+    let volumeId = '9KJJYFIss_wC';
+    it('should find a book by volumeId', (done) => {
+      request(app)
+        .get(`/api/search/${volumeId}`)
+        .expect(httpStatus.OK)
+        .then((res) => {
+          expect(res.body.id).to.equal(volumeId);
+          done();
+        })
+        .catch(done);
+    });
+  });
+
 });
