@@ -1,5 +1,5 @@
 import express from 'express';
-import GoogleBooks from '../helpers/google_books';
+import GoogleBooks from '../helpers/GoogleBooks';
 
 const router = express.Router(); // eslint-disable-line new-cap
 

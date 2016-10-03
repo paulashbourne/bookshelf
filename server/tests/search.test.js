@@ -5,7 +5,7 @@ import app from '../../index';
 
 chai.config.includeStack = true;
 
-describe('## Book Search APIs', () => {
+describe('## Search APIs', () => {
 
   describe('# GET /api/search', () => {
     it('should find some books', (done) => {
