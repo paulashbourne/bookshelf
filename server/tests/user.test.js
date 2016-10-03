@@ -7,8 +7,8 @@ chai.config.includeStack = true;
 
 describe('## User APIs', () => {
   let user = {
-    username: 'KK123',
-    mobileNumber: '1234567890'
+    name: 'KK123',
+    email: 'test@bookshelf.com'
   };
 
   describe('# POST /api/users', () => {
@@ -18,8 +18,8 @@ describe('## User APIs', () => {
         .send(user)
         .expect(httpStatus.OK)
         .then((res) => {
-          expect(res.body.username).to.equal(user.username);
-          expect(res.body.mobileNumber).to.equal(user.mobileNumber);
+          expect(res.body.name).to.equal(user.name);
+          expect(res.body.email).to.equal(user.email);
           user = res.body;
           done();
         })
@@ -27,14 +27,14 @@ describe('## User APIs', () => {
     });
   });
 
-  describe('# GET /api/users/:userId', () => {
+  describe('# GET /api/users/:id', () => {
     it('should get user details', (done) => {
       request(app)
         .get(`/api/users/${user._id}`)
         .expect(httpStatus.OK)
         .then((res) => {
-          expect(res.body.username).to.equal(user.username);
-          expect(res.body.mobileNumber).to.equal(user.mobileNumber);
+          expect(res.body.name).to.equal(user.name);
+          expect(res.body.email).to.equal(user.email);
           done();
         })
         .catch(done);
@@ -46,49 +46,6 @@ describe('## User APIs', () => {
         .expect(httpStatus.NOT_FOUND)
         .then((res) => {
           expect(res.body.message).to.equal('Not Found');
-          done();
-        })
-        .catch(done);
-    });
-  });
-
-  describe('# PUT /api/users/:userId', () => {
-    it('should update user details', (done) => {
-      user.username = 'KK';
-      request(app)
-        .put(`/api/users/${user._id}`)
-        .send(user)
-        .expect(httpStatus.OK)
-        .then((res) => {
-          expect(res.body.username).to.equal('KK');
-          expect(res.body.mobileNumber).to.equal(user.mobileNumber);
-          done();
-        })
-        .catch(done);
-    });
-  });
-
-  describe('# GET /api/users/', () => {
-    it('should get all users', (done) => {
-      request(app)
-        .get('/api/users')
-        .expect(httpStatus.OK)
-        .then((res) => {
-          expect(res.body).to.be.an('array');
-          done();
-        })
-        .catch(done);
-    });
-  });
-
-  describe('# DELETE /api/users/', () => {
-    it('should delete user', (done) => {
-      request(app)
-        .delete(`/api/users/${user._id}`)
-        .expect(httpStatus.OK)
-        .then((res) => {
-          expect(res.body.username).to.equal('KK');
-          expect(res.body.mobileNumber).to.equal(user.mobileNumber);
           done();
         })
         .catch(done);

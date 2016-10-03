@@ -27,8 +27,7 @@ function get(req, res) {
 function create(req, res, next) {
   const user = new User({
     name: req.body.name,
-    email: req.body.email,
-    location: req.body.location,
+    email: req.body.email
   });
 
   user.save()
