@@ -38,7 +38,7 @@ describe('## Book Search APIs', () => {
         .get(`/api/search/${volumeId}`)
         .expect(httpStatus.OK)
         .then((res) => {
-          expect(res.body.id).to.equal(volumeId);
+          expect(res.body.volumeId).to.equal(volumeId);
           done();
         })
         .catch(done);
