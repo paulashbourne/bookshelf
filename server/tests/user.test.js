@@ -8,7 +8,11 @@ chai.config.includeStack = true;
 describe('## User APIs', () => {
   let user = {
     username: 'KK123',
-    mobileNumber: '1234567890'
+    mobileNumber: '1234567890',
+    location: {
+      latitude: 10,
+      longitude: 10,
+    }
   };
 
   describe('# POST /api/users', () => {
@@ -20,6 +24,8 @@ describe('## User APIs', () => {
         .then((res) => {
           expect(res.body.username).to.equal(user.username);
           expect(res.body.mobileNumber).to.equal(user.mobileNumber);
+          expect(res.body.location.latitude).to.equal(user.location.latitude);
+          expect(res.body.location.longitude).to.equal(user.location.longitude);
           user = res.body;
           done();
         })
@@ -75,6 +81,20 @@ describe('## User APIs', () => {
         .expect(httpStatus.OK)
         .then((res) => {
           expect(res.body).to.be.an('array');
+          done();
+        })
+        .catch(done);
+    });
+  });
+
+  describe('# GET /api/users?latitude=0&longitude=0&radius=0', () => {
+    it('should get all users', (done) => {
+      request(app)
+        .get('/api/users?latitude=0&longitude=0&radius=0')
+        .expect(httpStatus.OK)
+        .then((res) => {
+          expect(res.body).to.be.an('array');
+          expect(res.body.length).to.equal(0);
           done();
         })
         .catch(done);

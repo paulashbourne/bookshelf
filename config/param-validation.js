@@ -5,7 +5,11 @@ export default {
   createUser: {
     body: {
       username: Joi.string().required(),
-      mobileNumber: Joi.string().regex(/^[1-9][0-9]{9}$/).required()
+      mobileNumber: Joi.string().regex(/^[1-9][0-9]{9}$/).required(),
+      locations: {
+        latitude: Joi.number(),
+        longitude: Joi.number()
+      }
     }
   },
 
@@ -13,7 +17,11 @@ export default {
   updateUser: {
     body: {
       username: Joi.string().required(),
-      mobileNumber: Joi.string().regex(/^[1-9][0-9]{9}$/).required()
+      mobileNumber: Joi.string().regex(/^[1-9][0-9]{9}$/).required(),
+      locations: {
+        latitude: Joi.number(),
+        longitude: Joi.number()
+      }
     },
     params: {
       userId: Joi.string().hex().required()

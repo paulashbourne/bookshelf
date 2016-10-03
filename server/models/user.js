@@ -16,6 +16,14 @@ const UserSchema = new mongoose.Schema({
     required: false,
     match: [/^[1-9][0-9]{9}$/, 'The value of path {PATH} ({VALUE}) is not a valid mobile number.']
   },
+  location: {
+    latitude: {
+      type: Number,
+    },
+    longitude: {
+      type: Number
+    }
+  },
   createdAt: {
     type: Date,
     default: Date.now
@@ -62,14 +70,34 @@ UserSchema.statics = {
    * @param {number} limit - Limit number of users to be returned.
    * @returns {Promise<User[]>}
    */
-  list({ skip = 0, limit = 50 } = {}) {
-    return this.find()
+  list({ skip = 0, limit = 50, latitude, longitude, radius } = {}) {
+    var query;
+
+    if (latitude && longitude && radius) {
+      var center = { latitude, longitude }
+      query = this.where(function(location, center, radius) {
+        console.log("radius " + radius);
+        return geolib.isPointInCircle(location, center, radius*1000);
+      }) (this.location, center, radius)
+    } else {
+      query = this.find();
+    }
+
+    return query
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit)
       .exec();
   }
 };
+
+// bar = function(fct) {
+//   console.log("test");
+//   fct();
+// }
+// a = "123"
+// bar(function(a) { console.log(a) })(a)
+
 
 /**
  * @typedef User

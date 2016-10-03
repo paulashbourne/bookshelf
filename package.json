@@ -32,6 +32,7 @@
     "express-jwt": "3.4.0",
     "express-validation": "1.0.0",
     "express-winston": "^1.2.0",
+    "geolib": "^2.0.21",
     "google-books-search": "^0.3.0",
     "helmet": "2.1.1",
     "http-status": "^0.2.0",
