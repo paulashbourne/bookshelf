@@ -87,7 +87,7 @@ describe('## Book APIs', () => {
         .expect(httpStatus.OK)
         .then((res) => {
           expect(res.body).to.be.an('array');
-          expect(res.body.length).to.equal(1);
+          expect(res.body.length).to.equal(3);
           done();
         })
         .catch(done);
