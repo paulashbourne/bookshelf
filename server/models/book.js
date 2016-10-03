@@ -44,8 +44,10 @@ BookSchema.statics = {
       })
   },
 
-  list({ skip = 0, limit = 50 } = {}) {
-    return this.find()
+  list({ skip = 0, limit = 50, ownerId } = {}) {
+    var filtered = ( ownerId == undefined ? this.find() : this.find({ ownerId }) );
+
+    return filtered
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit)

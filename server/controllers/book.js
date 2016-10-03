@@ -64,8 +64,9 @@ function update(req, res, next) {
  * @returns {Book[]}
  */
 function list(req, res, next) {
-  const { limit = 50, skip = 0 } = req.query;
-  Book.list({ limit, skip })
+  const { limit = 50, skip = 0, ownerId  } = req.query;
+
+  Book.list({ limit, skip, ownerId })
     .then(books => res.json(books))
     .catch(e => next(e));
 }
