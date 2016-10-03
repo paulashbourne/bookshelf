@@ -44,8 +44,16 @@ BookSchema.statics = {
       })
   },
 
-  list({ skip = 0, limit = 50, ownerId } = {}) {
-    var filtered = ( ownerId == undefined ? this.find() : this.find({ ownerId }) );
+  list({ skip = 0, limit = 50, user_ids } = {}) {
+    var filtered;
+
+    if (user_ids.length == 0){
+      filtered = this.find();
+    } else if (user_ids.length == 1) {
+      filtered = this.find({ ownerId: user_ids[0] });
+    } else {
+      filtered = this.where('ownerId').in(user_ids);
+    }
 
     return filtered
       .sort({ createdAt: -1 })

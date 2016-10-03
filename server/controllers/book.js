@@ -1,4 +1,6 @@
 import Book from '../models/book';
+import User from '../models/user';
+import geolib from 'geolib';
 
 /**
  * Load book and append to req.
@@ -64,11 +66,41 @@ function update(req, res, next) {
  * @returns {Book[]}
  */
 function list(req, res, next) {
-  const { limit = 50, skip = 0, ownerId  } = req.query;
+  const { limit = 50, skip = 0, ownerId, latitude, longitude, radius } = req.query;
+  var user_ids = [];
+  var center = { latitude, longitude }
 
-  Book.list({ limit, skip, ownerId })
+  // optimize if owner id present but owner not in radius
+  if (ownerId && latitude && longitude && radius &&
+    geolib.isPointInCircle(User.get(ownerId).location, center, radius)) {
+    return {};
+  }
+
+  if (latitude && longitude) {
+    user_ids = getUsersInRange(latitude, longitude, radius);
+  } else if (ownerId) {
+    user_ids = [ownerId];
+  }
+
+  Book.list({ limit, skip, user_ids })
     .then(books => res.json(books))
     .catch(e => next(e));
+}
+
+/**
+ * Get list of users in range.
+ * @property {number} latitude - Latitude of center.
+ * @property {number} longitude - Longitude of center.
+ * @property {number} radius - Integer radius in km.
+ * @returns {Book[]}
+ */
+function getUsersInRange(latitude, longitude, radius) {
+  var here = { latitude, longitude }
+
+  User.list({ latitude, longitude, radius })
+    .then(function(ids) {
+      return ids.map(i => i.id);
+    });
 }
 
 /**
