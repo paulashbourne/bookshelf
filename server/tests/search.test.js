@@ -18,5 +18,16 @@ describe('## Book Search APIs', () => {
         })
         .catch(done);
     });
+
+    it('should find a book by author', (done) => {
+      request(app)
+        .get(`/api/search?q=Gayle%20Laakmann%20McDowell&field=author`)
+        .expect(httpStatus.OK)
+        .then((res) => {
+          expect(res.body[0].authors[0]).to.equal('Gayle Laakmann McDowell');
+          done();
+        })
+        .catch(done);
+    });
   });
 });
